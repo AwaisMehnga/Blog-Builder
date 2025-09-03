@@ -1,0 +1,120 @@
+{
+  "_Alert-PhMt3h70.js": {
+    "file": "assets/Alert-PhMt3h70.js",
+    "name": "Alert",
+    "imports": [
+      "_client-BMqYja0k.js"
+    ]
+  },
+  "_GoBack-VQ0UMCVR.js": {
+    "file": "assets/GoBack-VQ0UMCVR.js",
+    "name": "GoBack",
+    "imports": [
+      "_client-BMqYja0k.js",
+      "_Alert-PhMt3h70.js",
+      "resources/js/Auth/app.jsx"
+    ]
+  },
+  "_Password-DK0lbdY-.js": {
+    "file": "assets/Password-DK0lbdY-.js",
+    "name": "Password",
+    "imports": [
+      "_client-BMqYja0k.js",
+      "_Alert-PhMt3h70.js"
+    ]
+  },
+  "_client-BMqYja0k.js": {
+    "file": "assets/client-BMqYja0k.js",
+    "name": "client"
+  },
+  "resources/js/Auth/Auth/ForgetPassword.jsx": {
+    "file": "assets/ForgetPassword-6soln6ow.js",
+    "name": "ForgetPassword",
+    "src": "resources/js/Auth/Auth/ForgetPassword.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client-BMqYja0k.js",
+      "resources/js/Auth/app.jsx",
+      "_GoBack-VQ0UMCVR.js",
+      "_Alert-PhMt3h70.js"
+    ]
+  },
+  "resources/js/Auth/Auth/Login.jsx": {
+    "file": "assets/Login-DHenKfVq.js",
+    "name": "Login",
+    "src": "resources/js/Auth/Auth/Login.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client-BMqYja0k.js",
+      "resources/js/Auth/app.jsx",
+      "_Alert-PhMt3h70.js",
+      "_Password-DK0lbdY-.js"
+    ]
+  },
+  "resources/js/Auth/Auth/ResetPassword.jsx": {
+    "file": "assets/ResetPassword-BCU1yUj-.js",
+    "name": "ResetPassword",
+    "src": "resources/js/Auth/Auth/ResetPassword.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client-BMqYja0k.js",
+      "resources/js/Auth/app.jsx",
+      "_GoBack-VQ0UMCVR.js",
+      "_Alert-PhMt3h70.js",
+      "_Password-DK0lbdY-.js"
+    ]
+  },
+  "resources/js/Auth/Auth/SignUp.jsx": {
+    "file": "assets/SignUp-CdWX1y_a.js",
+    "name": "SignUp",
+    "src": "resources/js/Auth/Auth/SignUp.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client-BMqYja0k.js",
+      "_Alert-PhMt3h70.js",
+      "_Password-DK0lbdY-.js",
+      "resources/js/Auth/app.jsx"
+    ]
+  },
+  "resources/js/Auth/app.jsx": {
+    "file": "assets/Auth-CF2_N7YG.js",
+    "name": "Auth",
+    "src": "resources/js/Auth/app.jsx",
+    "isEntry": true,
+    "imports": [
+      "_client-BMqYja0k.js"
+    ],
+    "dynamicImports": [
+      "resources/js/Auth/Auth/SignUp.jsx",
+      "resources/js/Auth/Auth/Login.jsx",
+      "resources/js/Auth/Auth/ForgetPassword.jsx",
+      "resources/js/Auth/Auth/ResetPassword.jsx",
+      "resources/js/UI/pages/NotFound.jsx"
+    ],
+    "css": [
+      "assets/homepage-CLWlQOUu.css"
+    ]
+  },
+  "resources/js/UI/pages/NotFound.jsx": {
+    "file": "assets/NotFound-C3_8gj7_.js",
+    "name": "NotFound",
+    "src": "resources/js/UI/pages/NotFound.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client-BMqYja0k.js",
+      "resources/js/Auth/app.jsx"
+    ]
+  },
+  "resources/js/homePage/app.jsx": {
+    "file": "assets/homepage-Tks8EMqn.js",
+    "name": "homepage",
+    "src": "resources/js/homePage/app.jsx",
+    "isEntry": true,
+    "imports": [
+      "_client-BMqYja0k.js"
+    ],
+    "css": [
+      "assets/homepage-CLWlQOUu.css"
+    ]
+  }
+}

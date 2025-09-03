@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Only include public pages in sitemap -->
+    <url>
+        <loc>http://localhost:8005/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Admin routes are intentionally EXCLUDED from sitemap for security -->
+    <!-- /admin/* routes are not listed here and should never be indexed -->
+</urlset>

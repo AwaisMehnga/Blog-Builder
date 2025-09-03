@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /admin/awais-mehnga
+Disallow: /admin/awais-mehnga/*
+
+# Additional security directives
+Crawl-delay: 10
+
+# Allow only specific areas (if needed)
+Allow: /
+Allow: /public/
+
+# Security note: Admin areas are completely off-limits
