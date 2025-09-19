@@ -11,7 +11,14 @@ export default defineConfig({
     tailwindcss(),
     
   ],
- 
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'resources/js'),
+      '@ui': path.resolve(__dirname, 'resources/js/UI'),
+      '@admin': path.resolve(__dirname, 'resources/js/Admin'),
+      '@Functions': path.resolve(__dirname, 'resources/js/Functions'),
+    },
+  },
   base: process.env.NODE_ENV === 'production' ? '/build/' : '/',
   build: {
     outDir: 'public/build',

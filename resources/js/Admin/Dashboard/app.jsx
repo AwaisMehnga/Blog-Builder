@@ -1,12 +1,20 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { createRoot } from "react-dom/client";
+import { Toaster } from "react-hot-toast";
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./AppRouter";
+import "./dashboard.css";
+import Loader from "../../UI/pages/Loader";
 
 function AdminDashboardApp() {
   return (
-    <div className="container">
-      <h1>Welcome to Admin Dashboard</h1>
-      <p>This is a React component!</p>
-    </div>
+    <BrowserRouter basename="/admin/awais-mehnga/dashboard">
+      <Suspense fallback={<Loader />}>
+        <Toaster position="top-right" reverseOrder={false} />
+        <AppRouter />
+        <Toaster position="top-right" reverseOrder={false} />
+      </Suspense>
+    </BrowserRouter>
   );
 }
 

@@ -34,13 +34,14 @@ class CategoryController extends Controller
             
             return $this->json([
                 'success' => true,
+                'error' => null,
                 'data' => $categories
             ]);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to fetch categories',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
@@ -57,7 +58,8 @@ class CategoryController extends Controller
             if (!$category) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'Category not found'
+                    'error' => 'Category not found',
+                    'data' => null
                 ], 404);
             }
             
@@ -65,13 +67,14 @@ class CategoryController extends Controller
             
             return $this->json([
                 'success' => true,
+                'error' => null,
                 'data' => $category
             ]);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to fetch category',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
@@ -102,14 +105,14 @@ class CategoryController extends Controller
             
             return $this->json([
                 'success' => true,
-                'message' => 'Category created successfully',
+                'error' => null,
                 'data' => $category
             ], 201);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to create category',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 400);
         }
     }
@@ -126,7 +129,8 @@ class CategoryController extends Controller
             if (!$category) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'Category not found'
+                    'error' => 'Category not found',
+                    'data' => null
                 ], 404);
             }
             
@@ -150,14 +154,14 @@ class CategoryController extends Controller
             
             return $this->json([
                 'success' => true,
-                'message' => 'Category updated successfully',
+                'error' => null,
                 'data' => $category
             ]);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to update category',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 400);
         }
     }
@@ -174,7 +178,8 @@ class CategoryController extends Controller
             if (!$category) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'Category not found'
+                    'error' => 'Category not found',
+                    'data' => null
                 ], 404);
             }
             
@@ -187,7 +192,8 @@ class CategoryController extends Controller
             if ($blogCount && $blogCount['count'] > 0) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'Cannot delete category with existing blogs. Please reassign or delete the blogs first.'
+                    'error' => 'Cannot delete category with existing blogs. Please reassign or delete the blogs first.',
+                    'data' => null
                 ], 400);
             }
             
@@ -200,7 +206,8 @@ class CategoryController extends Controller
             if ($childCount && $childCount['count'] > 0) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'Cannot delete category with child categories. Please delete child categories first.'
+                    'error' => 'Cannot delete category with child categories. Please delete child categories first.',
+                    'data' => null
                 ], 400);
             }
             
@@ -214,13 +221,14 @@ class CategoryController extends Controller
             
             return $this->json([
                 'success' => true,
-                'message' => 'Category deleted successfully'
+                'error' => null,
+                'data' => null
             ]);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to delete category',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
@@ -235,13 +243,14 @@ class CategoryController extends Controller
             
             return $this->json([
                 'success' => true,
+                'error' => null,
                 'data' => $categories
             ]);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to fetch category hierarchy',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }

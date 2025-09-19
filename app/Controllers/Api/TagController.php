@@ -28,13 +28,14 @@ class TagController extends Controller
             
             return $this->json([
                 'success' => true,
+                'error' => null,
                 'data' => $tags
             ]);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to fetch tags',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
@@ -51,7 +52,8 @@ class TagController extends Controller
             if (!$tag) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'Tag not found'
+                    'error' => 'Tag not found',
+                    'data' => null
                 ], 404);
             }
             
@@ -59,13 +61,14 @@ class TagController extends Controller
             
             return $this->json([
                 'success' => true,
+                'error' => null,
                 'data' => $tag
             ]);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to fetch tag',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
@@ -90,14 +93,14 @@ class TagController extends Controller
             
             return $this->json([
                 'success' => true,
-                'message' => 'Tag created successfully',
+                'error' => null,
                 'data' => $tag
             ], 201);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to create tag',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 400);
         }
     }
@@ -114,7 +117,8 @@ class TagController extends Controller
             if (!$tag) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'Tag not found'
+                    'error' => 'Tag not found',
+                    'data' => null
                 ], 404);
             }
             
@@ -132,14 +136,14 @@ class TagController extends Controller
             
             return $this->json([
                 'success' => true,
-                'message' => 'Tag updated successfully',
+                'error' => null,
                 'data' => $tag
             ]);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to update tag',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 400);
         }
     }
@@ -156,7 +160,8 @@ class TagController extends Controller
             if (!$tag) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'Tag not found'
+                    'error' => 'Tag not found',
+                    'data' => null
                 ], 404);
             }
             
@@ -170,13 +175,14 @@ class TagController extends Controller
             
             return $this->json([
                 'success' => true,
-                'message' => 'Tag deleted successfully'
+                'error' => null,
+                'data' => null
             ]);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to delete tag',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
@@ -192,7 +198,8 @@ class TagController extends Controller
             if (empty($ids) || !is_array($ids)) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'No tag IDs provided'
+                    'error' => 'No tag IDs provided',
+                    'data' => null
                 ], 400);
             }
             
@@ -212,14 +219,16 @@ class TagController extends Controller
             
             return $this->json([
                 'success' => true,
-                'message' => 'Tags deleted successfully',
-                'affected_count' => count($ids)
+                'error' => null,
+                'data' => [
+                    'affected_count' => count($ids)
+                ]
             ]);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Bulk delete failed',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
@@ -236,6 +245,7 @@ class TagController extends Controller
             if (empty($query)) {
                 return $this->json([
                     'success' => true,
+                    'error' => null,
                     'data' => []
                 ]);
             }
@@ -246,13 +256,14 @@ class TagController extends Controller
             
             return $this->json([
                 'success' => true,
+                'error' => null,
                 'data' => $tags
             ]);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Search failed',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }

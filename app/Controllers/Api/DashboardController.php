@@ -69,6 +69,7 @@ class DashboardController extends Controller
             
             return $this->json([
                 'success' => true,
+                'error' => null,
                 'data' => [
                     'counts' => [
                         'blogs' => [
@@ -89,8 +90,8 @@ class DashboardController extends Controller
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to fetch dashboard stats',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
@@ -164,6 +165,7 @@ class DashboardController extends Controller
             
             return $this->json([
                 'success' => true,
+                'error' => null,
                 'data' => [
                     'content_creation' => $contentCreation,
                     'status_over_time' => $statusOverTime,
@@ -179,8 +181,8 @@ class DashboardController extends Controller
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to fetch analytics',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
@@ -214,13 +216,14 @@ class DashboardController extends Controller
             
             return $this->json([
                 'success' => true,
+                'error' => null,
                 'data' => $activities
             ]);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to fetch recent activity',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
@@ -238,6 +241,7 @@ class DashboardController extends Controller
             if (empty($query)) {
                 return $this->json([
                     'success' => true,
+                    'error' => null,
                     'data' => [
                         'blogs' => [],
                         'categories' => [],
@@ -285,13 +289,14 @@ class DashboardController extends Controller
             
             return $this->json([
                 'success' => true,
+                'error' => null,
                 'data' => $results
             ]);
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Search failed',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }

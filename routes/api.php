@@ -5,7 +5,7 @@ use Core\Router;
 $router = Router::getInstance();
 
 // API routes - All protected by admin middleware
-$router->group(['prefix' => 'api/v1', 'middleware' => ['App\Middleware\AdminMiddleware', 'App\Middleware\SecurityHeadersMiddleware']], function($router) {
+$router->group(['prefix' => 'api', 'middleware' => ['App\Middleware\AdminMiddleware', 'App\Middleware\SecurityHeadersMiddleware']], function($router) {
     
     // Dashboard & Analytics
     $router->get('/dashboard/stats', 'Api\DashboardController@stats');

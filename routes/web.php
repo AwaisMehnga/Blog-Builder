@@ -15,6 +15,6 @@ $router->group(['prefix' => 'admin/awais-mehnga', 'middleware' => 'App\Middlewar
     $router->get('/logout', 'AdminController@logout');
     
     // Protected admin routes with double middleware protection
-    $router->get('/dashboard', 'AdminController@dashboard')->middleware(['App\Middleware\AdminMiddleware', 'App\Middleware\SecurityHeadersMiddleware']);
+    $router->get('/dashboard/*', 'AdminController@dashboard')->middleware(['App\Middleware\AdminMiddleware', 'App\Middleware\SecurityHeadersMiddleware']);
 });
 

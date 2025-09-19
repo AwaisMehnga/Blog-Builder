@@ -73,17 +73,27 @@ class Router
     protected function addRoute(array $methods, string $uri, $action): Route
     {
         $uri = $this->applyGroupPrefix($uri);
-        $group = $this->getCurrentGroup();
-        // Controller grouping: if 'controller' is set and action is a string (method name only), prepend controller
-        if ($group && isset($group['controller']) && is_string($action) && !str_contains($action, '@')) {
-            $action = $group['controller'] . '@' . $action;
+        $allGroups = $this->getAllGroups();
+        
+        // Controller grouping: check all groups for controller setting
+        foreach (array_reverse($allGroups) as $group) {
+            if (isset($group['controller']) && is_string($action) && !str_contains($action, '@')) {
+                $action = $group['controller'] . '@' . $action;
+                break;
+            }
         }
+        
         $route = new Route($methods, $uri, $action);
 
-        if ($group) {
+        // Apply middleware from all groups (parent to child order)
+        foreach ($allGroups as $group) {
             if (isset($group['middleware'])) {
                 $route->middleware($group['middleware']);
             }
+        }
+        
+        // Apply name prefixes from all groups
+        foreach ($allGroups as $group) {
             if (isset($group['name'])) {
                 $route->prefixName($group['name']);
             }
@@ -147,6 +157,11 @@ class Router
     protected function getCurrentGroup(): ?array
     {
         return end($this->currentGroup) ?: null;
+    }
+
+    protected function getAllGroups(): array
+    {
+        return $this->currentGroup;
     }
 
     protected function getDispatcher(): Dispatcher

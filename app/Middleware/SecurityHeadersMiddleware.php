@@ -68,16 +68,20 @@ class SecurityHeadersMiddleware implements Middleware
         $appEnv = env('APP_ENV', 'production');
         $isDevelopment = in_array($appEnv, ['development', 'local']);
         
+        // CDN domains used by VvvebBuilder and other components
+        $cdnDomains = 'https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com https://via.placeholder.com https://cdn.tailwindcss.com https://code.jquery.com';
+        
         if ($isDevelopment) {
-            // Development CSP - allows Vite dev server
+            // Development CSP - allows Vite dev server and CDN resources
             return "default-src 'self'; " .
-                   "script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:5173 ws://localhost:5173; " .
-                   "style-src 'self' 'unsafe-inline' http://localhost:5173; " .
+                   "script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:5173 ws://localhost:5173 {$cdnDomains}; " .
+                   "style-src 'self' 'unsafe-inline' http://localhost:5173 {$cdnDomains}; " .
                    "connect-src 'self' http://localhost:5173 ws://localhost:5173; " .
-                   "img-src 'self' data: http://localhost:5173; " .
+                   "img-src 'self' data: http://localhost:5173 https:; " .
+                   "font-src 'self' {$cdnDomains}; " .
                    "frame-ancestors 'none';";
         } else {
-            // Production CSP - strict security
+            // Production CSP - strict security (no CDNs in production for security)
             return "default-src 'self'; " .
                    "script-src 'self' 'unsafe-inline'; " .
                    "style-src 'self' 'unsafe-inline'; " .

@@ -53,7 +53,8 @@ class MediaController extends Controller
             if (!$file || !$file->isValid()) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'No valid file uploaded'
+                    'error' => 'No valid file uploaded',
+                    'data' => null
                 ], 400);
             }
             
@@ -62,7 +63,8 @@ class MediaController extends Controller
             if (!$validation['valid']) {
                 return $this->json([
                     'success' => false,
-                    'message' => $validation['message']
+                    'error' => $validation['message'],
+                    'data' => null
                 ], 400);
             }
             
@@ -79,7 +81,8 @@ class MediaController extends Controller
             if (!$file->move($fullPath)) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'Failed to save file'
+                    'error' => 'Failed to save file',
+                    'data' => null
                 ], 500);
             }
             
@@ -104,15 +107,15 @@ class MediaController extends Controller
             
             return $this->json([
                 'success' => true,
-                'message' => 'File uploaded successfully',
+                'error' => null,
                 'data' => $fileInfo
             ]);
             
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Upload failed',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
@@ -128,7 +131,8 @@ class MediaController extends Controller
             if (empty($files) || !isset($files['files'])) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'No files uploaded'
+                    'error' => 'No files uploaded',
+                    'data' => null
                 ], 400);
             }
             
@@ -245,23 +249,21 @@ class MediaController extends Controller
             
             $response = [
                 'success' => !empty($uploadedFiles),
-                'data' => $uploadedFiles
+                'error' => !empty($errors) ? implode(', ', $errors) : null,
+                'data' => [
+                    'uploaded_files' => $uploadedFiles,
+                    'uploaded_count' => count($uploadedFiles),
+                    'failed_count' => count($errors)
+                ]
             ];
-            
-            if (!empty($errors)) {
-                $response['errors'] = $errors;
-                $response['message'] = count($uploadedFiles) . ' files uploaded, ' . count($errors) . ' failed';
-            } else {
-                $response['message'] = count($uploadedFiles) . ' files uploaded successfully';
-            }
             
             return $this->json($response);
             
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Multiple upload failed',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
@@ -335,20 +337,23 @@ class MediaController extends Controller
             
             return $this->json([
                 'success' => true,
-                'data' => $files,
-                'pagination' => [
-                    'current_page' => $page,
-                    'per_page' => $limit,
-                    'total' => $total,
-                    'total_pages' => ceil($total / $limit)
+                'error' => null,
+                'data' => [
+                    'files' => $files,
+                    'pagination' => [
+                        'current_page' => $page,
+                        'per_page' => $limit,
+                        'total' => $total,
+                        'total_pages' => ceil($total / $limit)
+                    ]
                 ]
             ]);
             
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Failed to list files',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
@@ -365,7 +370,8 @@ class MediaController extends Controller
             if (!$filename) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'Filename is required'
+                    'error' => 'Filename is required',
+                    'data' => null
                 ], 400);
             }
             
@@ -374,27 +380,30 @@ class MediaController extends Controller
             if (!file_exists($filePath)) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'File not found'
+                    'error' => 'File not found',
+                    'data' => null
                 ], 404);
             }
             
             if (!unlink($filePath)) {
                 return $this->json([
                     'success' => false,
-                    'message' => 'Failed to delete file'
+                    'error' => 'Failed to delete file',
+                    'data' => null
                 ], 500);
             }
             
             return $this->json([
                 'success' => true,
-                'message' => 'File deleted successfully'
+                'error' => null,
+                'data' => null
             ]);
             
         } catch (\Exception $e) {
             return $this->json([
                 'success' => false,
-                'message' => 'Delete failed',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'data' => null
             ], 500);
         }
     }
